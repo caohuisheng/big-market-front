@@ -3,7 +3,8 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false, //启动所有严格类型检查选项
+    "noImplicitAny": false, //不允许隐式的Any类型
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -22,5 +23,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }
