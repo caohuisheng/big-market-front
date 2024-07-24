@@ -1,6 +1,20 @@
 import { mock } from "node:test"
 
-const apiHostUrl = process.env.API_HOST_URL ? process.env.API_HOST_URL : "https://mock.apipost.net/mock/2ebf1227a066000"
+const apiHostUrl = process.env.API_HOST_URL ? process.env.API_HOST_URL : "http://localhost:8080"
+
+/**
+ * 装配抽奖
+ * @param strategyId 策略id
+ * @returns 
+ */
+ export const strategyArmory = (strategyId?: number) => {
+    return fetch(`${apiHostUrl}/api/v1/raffle/strategy_armory?strategyId=${strategyid}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+}
 
 /**
  * 查询抽奖奖品列表
@@ -37,3 +51,6 @@ export const randomRaffle = (strategyId: number) => {
         return fetch("{\"code\":\"0001\", \"info\":\"请求失败\", \"data\":\"\"}")
     }
 }
+
+
+
