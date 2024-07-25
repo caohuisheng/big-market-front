@@ -1,5 +1,6 @@
 import {LuckyWheelPage} from "@/src/app/pages/lucky/lucky-wheel-page"
 import {LuckyGridPage} from "@/src/app/pages/lucky/lucky-grid-page"
+import {StrategyArmory} from "@/src/app/components/StrategyArmory"
 
 export default function Home() {
   return (
@@ -8,6 +9,9 @@ export default function Home() {
         <header className="text-3xl font-bold text-center text-gray-800 my-8">
           大营销平台 - 抽奖展示
         </header>
+
+        {/* 策略装配按钮 */}
+        <StrategyArmory/>
 
         {/* 中间的两个div元素 */}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
@@ -25,7 +29,7 @@ export default function Home() {
 
         {/* 底部文案 */}
         <footer className="text-gray-600 text-center my-8">
-          大营销平台
+          大营销平台 - 一个模拟抽奖业务的营销系统
         </footer>
     </div>
   )

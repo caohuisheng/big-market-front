@@ -1,6 +1,6 @@
 import { mock } from "node:test"
 
-const apiHostUrl = process.env.API_HOST_URL ? process.env.API_HOST_URL : "http://localhost:8080"
+const apiHostUrl = process.env.API_HOST_URL ? process.env.API_HOST_URL : "http://localhost:8091"
 
 /**
  * 装配抽奖
@@ -8,7 +8,7 @@ const apiHostUrl = process.env.API_HOST_URL ? process.env.API_HOST_URL : "http:/
  * @returns 
  */
  export const strategyArmory = (strategyId?: number) => {
-    return fetch(`${apiHostUrl}/api/v1/raffle/strategy_armory?strategyId=${strategyid}`, {
+    return fetch(`${apiHostUrl}/api/v1/raffle/strategy_armory?strategyId=${strategyId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -23,11 +23,14 @@ const apiHostUrl = process.env.API_HOST_URL ? process.env.API_HOST_URL : "http:/
  */
 export const queryRaffleAwardList = (strategyId: number) => {
     try{
-        return fetch(`${apiHostUrl}/api/v1/raffle/query_raffle_award_list?apipost_id=2c1e24f0766003&strategyId=${strategyId}`,{
-            method: 'get',
+        return fetch(`${apiHostUrl}/api/v1/raffle/query_raffle_award_list`,{
+            method: 'post',
             headers: {
-                'Content-Type': 'application/json:charset=utf-8'
-            }
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'strategyId': strategyId
+            })
         })
     }catch(error){
         return fetch("{\"code\":\"0001\", \"info\":\"请求失败\", \"data\":[]}")
@@ -39,13 +42,16 @@ export const queryRaffleAwardList = (strategyId: number) => {
  * @param strategyId 策略id
  * @returns 抽奖结果
  */
-export const randomRaffle = (strategyId: number) => {
+export const randomRaffle = (strategyId: Number) => {
     try{
-        return fetch(`${apiHostUrl}/api/v1/raffle/random_raffle?apipost_id=2c1edb0bb66004&strategyId=${strategyId}`, {
-            method: 'get',
+        return fetch(`${apiHostUrl}/api/v1/raffle/random_raffle`, {
+            method: 'post',
             headers: {
-                'Content-Type': 'application/json:charset=utf-8'
-            }
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'strategyId': strategyId
+            })
         })
     }catch(error){
         return fetch("{\"code\":\"0001\", \"info\":\"请求失败\", \"data\":\"\"}")

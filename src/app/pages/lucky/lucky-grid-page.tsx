@@ -6,8 +6,6 @@ import {queryRaffleAwardList, randomRaffle} from '@/src/apis/index'
 import { RaffleAwardVO } from '@/src/types/RaffleAwardVO'
 
 export function LuckyGridPage(){
-    const queryParams = new URLSearchParams(window.location.search)
-    const strategyId = Number(queryParams.get('strategyId'))
     const [prizes, setPrizes] = useState([{}])
     const myLucky = useRef(null)
     const [defaultStyle] = useState([{background: "#b8c5f2"}])
@@ -22,6 +20,8 @@ export function LuckyGridPage(){
     ])
 
     const queryRaffleAwardListHandle = async() => {
+        const queryParams = new URLSearchParams(window.location.search)
+        const strategyId = Number(queryParams.get('strategyId'))
         const result = await queryRaffleAwardList(strategyId)
         const {code, info, data} = await result.json()
         if(code != "0000"){
@@ -44,6 +44,8 @@ export function LuckyGridPage(){
     }
 
     const randomRaffleHandle = async () => {
+        const queryParams = new URLSearchParams(window.location.search)
+        const strategyId = Number(queryParams.get('strategyId'))
         const result = await randomRaffle(strategyId)
         const {code, data, info} = await result.json()
         if(code != "0000"){
@@ -82,7 +84,7 @@ export function LuckyGridPage(){
             }}
             onEnd={
                 prize => {
-                    alert('恭喜你抽到 【' + prize.fonts[0].text + '】奖品id：' + prize.fonts[0].id)
+                    alert('恭喜你抽到 【' + prize.fonts[0].text + '】奖品id：【' + prize.fonts[0].id + '】')
                 }
             }>
         </LuckyGrid>
